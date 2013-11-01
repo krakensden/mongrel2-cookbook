@@ -80,7 +80,7 @@ bash "generate config <mongrel2-#{node[:mongrel2][:src_version]}" do
   EOH
 end
 
-directory "/etc/sv/mongrel2" do
+directory "#{node[:mongrel2][:daemon_dir]}/mongrel2" do
   recursive true
   owner "root"
   group "root"
@@ -88,7 +88,7 @@ directory "/etc/sv/mongrel2" do
 end
 
 daemontools_service "mongrel2" do
-  directory "/etc/sv/mongrel2"
+  directory "#{node[:mongrel2][:daemon_dir]}/mongrel2"
   template "mongrel2"
   action [:enable,:start]
   log true

@@ -25,3 +25,10 @@ default[:mongrel2][:uuid] = "f400bf85-4538-4f7a-8908-67e313d515c2"
 default[:mongrel2][:name] = "master"
 default[:mongrel2][:hostname] = "localhost"
 default[:mongrel2][:port] = "80"
+
+case node['platform']
+when "ubuntu"
+    default[:mongrel2][:daemon_dir] = "/etc/sv"
+else
+    default[:mongrel2][:daemon_dir] = "/var"
+end
